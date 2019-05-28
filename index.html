@@ -13,7 +13,6 @@
       <button class="ui teal button" id='random-joke-button'>Click Here for a New Joke</button>
       <button class="ui orange button" id='myBtn'>Add this Joke to a List</button>
 
-      
           <form method='post' action='localhost:3000/users'>
         <div class="modal-content" id='modal-content'>
           <span class="close">&times;</span>
@@ -22,6 +21,21 @@
             <input type='text' id='username' placeholder='Enter Your Username'><br>
             <input type='submit'>
           </form>
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+
+            <div class="modal-content" id='modal-content'>
+              <span class="close">&times;</span>
+              <div class='login-form' id='login-form-div'>
+              <form id='login-form'>
+                <label>Username: </label>
+                <input type='text' id='username' placeholder='Enter Your Username'><br>
+                <input type='submit'>
+              </form>
+            </div>
+              <div class='checkbox-form' id='checkbox-form-div'>
+              </div>
+          </div>
         </div>
       </div>
 
