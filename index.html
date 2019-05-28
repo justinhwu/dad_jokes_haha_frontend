@@ -12,21 +12,22 @@
       <button id='random-joke-button'>Click Here for a New Joke</button>
       <button id='myBtn'>Add this Joke to a List</button>
       <div id="myModal" class="modal">
-
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content" id='modal-content'>
           <span class="close">&times;</span>
-          <form method='post' action='localhost:3000/users'>
+          <form id='login-form'>
             <label>Username: </label>
             <input type='text' id='username' placeholder='Enter Your Username'><br>
             <input type='submit'>
           </form>
         </div>
-
       </div>
-    </div>
+
+
     <div class="login" id="login-div"></div>
-    <div class="add-to-list" id="add-to-list-div"></div>
+    <div class="add-to-list" id="add-to-list-div">
+    </div>
+</div>
     <div class="logged-in-lists" id='logged-in-lists-div'></div>
 
     <link rel="stylesheet" type="text/css" href="assets/style.css">
