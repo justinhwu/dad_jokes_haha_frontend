@@ -37,11 +37,23 @@ function initLoginModal(){
   btn.onclick = function() {
     if (user !== undefined){
       //hides the login form
+
       login_form.style.display = 'none'
       modal.style.display = "block"
-      //If the checkbox elements do not exist, then the program will display the checkbox once upon click
       if (checkbox_div.childNodes.length <= 1 ){
-        displayLists()
+      //If the checkbox elements do not exist, then the program will display the checkbox once upon click
+        let create_new_list_button = document.createElement('button')
+        create_new_list_button.id = 'create_new_list_button'
+        create_new_list_button.className = 'ui teal button'
+        create_new_list_button.innerText = 'Create a New List'
+        let add_to_existing_list_button = document.createElement('button')
+        add_to_existing_list_button.id = 'add_to_existing_list_button'
+        add_to_existing_list_button.className = 'ui orange button'
+        add_to_existing_list_button.innerText = 'Add to an Existing List'
+
+        modal_content.append(create_new_list_button, add_to_existing_list_button)
+        add_to_existing_list_button.addEventListener('click', displayLists)
+        create_new_list_button.addEventListener('click', displayNewListForm)
       }
     }
     else{
@@ -90,6 +102,8 @@ function handleLogin(userObj){
 
 
 function displayLists(){
+  if (checkbox_div.childNodes.length <= 1 ){
+
   let joke = document.querySelector(`p`)
 
   //creates prompt for user to choose a list to add to
@@ -116,5 +130,20 @@ function displayLists(){
   })
   add_to_list_form.append(unordered_list, submit)
   checkbox_div.append(add_to_list_header, add_to_list_form)
+  }
+}
+
+function displayNewListForm(){
+
+  let add_to_list_form = document.createElement('form')
+  let name_label = document.createElement('label')
+  name_label.innerText = 'Name: '
+  let name_input = document.createElement('input')
+  name_input.type = 'text'
+  let submit = document.createElement('input')
+  submit.type = 'submit'
+  submit.value = 'Create New List'
+  add_to_list_form.append(name_label, name_input, submit)
+  modal_content.prepend(add_to_list_form)
 
 }
