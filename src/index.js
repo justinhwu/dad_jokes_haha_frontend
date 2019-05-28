@@ -4,8 +4,9 @@ let add_to_list_button = document.getElementById('add-joke-to-list')
 let user = undefined
 var modal = document.getElementById("myModal");
 let modal_content = document.getElementById('modal-content')
-let login_form = document.getElementById('login-form')
+let login_form = document.getElementById('login-form-div')
 let add_to_list_div = document.getElementById('add-to-list-div')
+let checkbox_div = document.getElementById('checkbox-form-div')
 
 document.addEventListener('DOMContentLoaded', ()=>{
 //still needs callback
@@ -35,14 +36,25 @@ function initLoginModal(){
   // When the user clicks the button, open the modal
   btn.onclick = function() {
     if (user !== undefined){
+      //hides the login form
       login_form.style.display = 'none'
-      modal.style.display = "block";
+      modal.style.display = "block"
+      //If the checkbox elements do not exist, then the program will display the checkbox once upon click
+      if (checkbox_div.childNodes.length <= 1 ){
       let joke = document.querySelector(`p`)
-      let add_to_list_form = document.createElement('form')
+
+      //creates prompt for user to choose a list to add to
       let add_to_list_header = document.createElement('h2')
       add_to_list_header.innerText = 'Please choose a list to add this joke to!'
+      //creates form to submit
+      let add_to_list_form = document.createElement('form')
       let unordered_list = document.createElement('ul')
+      let submit = document.createElement('input')
+      submit.type = 'submit'
+      submit.value = 'Add to List'
       add_to_list_form.id = 'add_to_list_form'
+
+      //Creates checkbox with each list item
       user.lists.forEach((list)=> {
         let list_element = document.createElement('li')
         let list_header = document.createElement('header')
@@ -53,7 +65,9 @@ function initLoginModal(){
         list_element.append(list_header, list_box)
         unordered_list.appendChild(list_element)
       })
-      modal_content.append(add_to_list_header, unordered_list)
+      add_to_list_form.append(unordered_list, submit)
+      checkbox_div.append(add_to_list_header, add_to_list_form)
+      }
     }
     else{
       modal.style.display = "block";
