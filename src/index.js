@@ -41,32 +41,7 @@ function initLoginModal(){
       modal.style.display = "block"
       //If the checkbox elements do not exist, then the program will display the checkbox once upon click
       if (checkbox_div.childNodes.length <= 1 ){
-      let joke = document.querySelector(`p`)
-
-      //creates prompt for user to choose a list to add to
-      let add_to_list_header = document.createElement('h2')
-      add_to_list_header.innerText = 'Please choose a list to add this joke to!'
-      //creates form to submit
-      let add_to_list_form = document.createElement('form')
-      let unordered_list = document.createElement('ul')
-      let submit = document.createElement('input')
-      submit.type = 'submit'
-      submit.value = 'Add to List'
-      add_to_list_form.id = 'add_to_list_form'
-
-      //Creates checkbox with each list item
-      user.lists.forEach((list)=> {
-        let list_element = document.createElement('li')
-        let list_header = document.createElement('header')
-        list_header.innerText = list.name
-        let list_box = document.createElement('input')
-        list_box.id = list.id
-        list_box.type = 'checkbox'
-        list_element.append(list_header, list_box)
-        unordered_list.appendChild(list_element)
-      })
-      add_to_list_form.append(unordered_list, submit)
-      checkbox_div.append(add_to_list_header, add_to_list_form)
+        displayLists()
       }
     }
     else{
@@ -111,4 +86,35 @@ function handleLogin(userObj){
   else{
     alert(`${userObj.error}, please enter a valid username!`)
   }
+}
+
+
+function displayLists(){
+  let joke = document.querySelector(`p`)
+
+  //creates prompt for user to choose a list to add to
+  let add_to_list_header = document.createElement('h2')
+  add_to_list_header.innerText = 'Please choose a list to add this joke to!'
+  //creates form to submit
+  let add_to_list_form = document.createElement('form')
+  let unordered_list = document.createElement('ul')
+  let submit = document.createElement('input')
+  submit.type = 'submit'
+  submit.value = 'Add to List'
+  add_to_list_form.id = 'add_to_list_form'
+
+  //Creates checkbox with each list item
+  user.lists.forEach((list)=> {
+    let list_element = document.createElement('li')
+    let list_header = document.createElement('header')
+    list_header.innerText = list.name
+    let list_box = document.createElement('input')
+    list_box.id = list.id
+    list_box.type = 'checkbox'
+    list_element.append(list_header, list_box)
+    unordered_list.appendChild(list_element)
+  })
+  add_to_list_form.append(unordered_list, submit)
+  checkbox_div.append(add_to_list_header, add_to_list_form)
+
 }
