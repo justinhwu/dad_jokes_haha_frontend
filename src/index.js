@@ -7,7 +7,7 @@ joke_button.addEventListener('click', (e)=> {
   let paragraph = document.querySelector('p')
   e.preventDefault()
   rand_div.removeChild(paragraph)
-  
+
   Joke.randJoke()
   })
 })
