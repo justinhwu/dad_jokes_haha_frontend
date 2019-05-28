@@ -14,8 +14,12 @@
       <div id="myModal" class="modal">
 
         <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
+        <div class="ui middle aligned center aligned grid" id="login-grandparent">
+          <div class="column" id='login-parent'>
+            <h2 class="ui teal image header">
+              <div class="content">Log in to Dad Jokes</div>
+            </h2>
+          </div>
           <form method='post' action='localhost:3000/users'>
             <label>Username: </label>
             <input type='text' id='username' placeholder='Enter Your Username'><br>
