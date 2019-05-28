@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
     <title>Dad Jokes to Make You Laugh</title>
   </head>
   <body>
@@ -9,32 +10,28 @@
     <div class="random-joke" id='random-joke-div'>
     </div>
     <div class='buttons' id='buttons'>
-      <button id='random-joke-button'>Click Here for a New Joke</button>
-      <button id='myBtn'>Add this Joke to a List</button>
+      <button class="ui teal button" id='random-joke-button'>Click Here for a New Joke</button>
+      <button class="ui orange button" id='myBtn'>Add this Joke to a List</button>
       <div id="myModal" class="modal">
-
         <!-- Modal content -->
           </div>
           <form method='post' action='localhost:3000/users'>
+        <div class="modal-content" id='modal-content'>
+          <span class="close">&times;</span>
+          <form id='login-form'>
             <label>Username: </label>
             <input type='text' id='username' placeholder='Enter Your Username'><br>
             <input type='submit'>
           </form>
         </div>
-
       </div>
-    </div>
-    <div class="login" id="login-div"></div>
-    <div class="add-to-list" id="add-to-list-div"></div>
-    <div class="logged-in-lists" id='logged-in-lists-div'></div>
 
-    <link rel="stylesheet" type="text/css" href="assets/style.css">
-    <!-- <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
-      <script
-        src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
-      <script src="semantic/dist/semantic.min.js"></script> -->
+
+    <div class="login" id="login-div"></div>
+    <div class="add-to-list" id="add-to-list-div">
+    </div>
+</div>
+    <div class="logged-in-lists" id='logged-in-lists-div'></div>
 
     <script src="src/adapter.js"></script>
     <script src="src/helper.js"></script>
@@ -42,4 +39,8 @@
     <script src="src/user.js"></script>
     <script src="src/index.js"></script>
   </body>
+  <footer>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>  </footer>
 </html>
