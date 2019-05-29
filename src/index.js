@@ -9,7 +9,6 @@ let add_to_list_div = document.getElementById('add-to-list-div')
 let checkbox_div = document.getElementById('checkbox-form-div')
 
 document.addEventListener('DOMContentLoaded', ()=>{
-//still needs callback
     //sets the user for the page as undefined (if user isn't logged in)
     //renders a random joke on the page
     initLoginModal()

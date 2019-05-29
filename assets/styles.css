@@ -47,3 +47,9 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+#ui-label {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
