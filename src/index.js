@@ -196,6 +196,31 @@ function displayLists(){
 function displayNewListForm(){
 
   let add_to_list_form = document.createElement('form')
+
+    add_to_list_form.addEventListener('submit', (e)=>{
+      e.preventDefault()
+      let checkbox = document.querySelectorAll('.check-box')
+      let checked_ids = []
+      checkbox.forEach((element)=>{
+        if (element.checked){
+          checked_ids.push(element.id)
+        }
+      })
+      let joke_id = document.querySelector('p')
+      fetch(`http://localhost:3000/jokes`, {
+        method:'post',
+        headers:{
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          'id': joke_id.dataset.jokeId,
+          'phrase': joke_id.innerText,
+          'list_ids': checked_ids
+        })
+      })
+
+    })
   let name_label = document.createElement('label')
   name_label.innerText = 'Name: '
   let name_input = document.createElement('input')
