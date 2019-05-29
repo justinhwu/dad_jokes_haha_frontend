@@ -5,6 +5,7 @@ let user = undefined
 var modal = document.getElementById("myModal");
 let modal_content = document.getElementById('modal-content')
 let loginIcon = document.getElementById('ui-label')
+let showListsIcon = document.getElementById('ui-label-for-lists')
 let login_form = document.getElementById('login-form-div')
 let add_to_list_div = document.getElementById('add-to-list-div')
 let checkbox_div = document.getElementById('checkbox-form-div')
@@ -22,7 +23,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
       rand_div.removeChild(paragraph)
       Joke.randJoke()
     })
-
+    showListsIcon.onclick = function(){
+      List.getUserLists()
+    }
 })
 
 function initLoginModal(){

@@ -53,3 +53,9 @@
   top: 0px;
   right: 0px;
 }
+
+#ui-label-for-lists {
+  position: absolute;
+  top: 0px;
+  right: 90px;
+}
