@@ -2,8 +2,11 @@ class Joke{
 
   constructor(jokeObj){
     this.id = jokeObj.id
-    this.phrase = jokeObj.joke
+    this.joke = jokeObj.joke
+    Joke.all.push(this)
   }
+
+  static all = []
 
   static randJoke(){
     //makes a fetch request to the joke api, format is specified on the joke api website
@@ -17,6 +20,7 @@ class Joke{
     .then(resp => resp.json())
     .then(jokeObj => {
       //creates a new joke object with the attributes from the joke
+
       let newJoke = new Joke(jokeObj)
       newJoke.render()
     })
@@ -27,7 +31,7 @@ class Joke{
     let paragraph = document.createElement('p')
     let randomJokeDiv = document.getElementById('random-joke-div')
     paragraph.dataset.jokeId = this.id
-    paragraph.innerText = this.phrase
+    paragraph.innerText = this.joke
     randomJokeDiv.appendChild(paragraph)
   }
 

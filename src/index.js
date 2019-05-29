@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
       rand_div.removeChild(paragraph)
       Joke.randJoke()
     })
+
+
     showListsIcon.onclick = function(){
       List.getUserLists()
     }
@@ -95,7 +97,7 @@ function initLoginModal(){
 
   // When the user clicks the button, open the modal
   btn.onclick = function () {
-    if (user !== undefined){
+    if (User.all.length !== 0 ){
       //hides the login form
 
       login_form.style.display = 'none'
@@ -118,22 +120,9 @@ function initLoginModal(){
     }
     else{
       modal.style.display = "block";
-      let usernameVal = document.getElementById('username')
       login_form.addEventListener('submit', (e)=>{
         e.preventDefault()
-        fetch(loginRailsApi, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          }
-          ,
-          body: JSON.stringify({
-            'username': usernameVal.value
-          })
-        })
-        .then(resp=> resp.json())
-        .then(userObj => {handleLogin(userObj)})
+        User.fetchUser()
       })
     }
   }
@@ -150,15 +139,6 @@ function initLoginModal(){
   }
 }
 
-function handleLogin(userObj){
-  if (!userObj.error){
-    user = userObj
-    modal.style.display = "none"
-  }
-  else{
-    alert(`${userObj.error}, please enter a valid username!`)
-  }
-}
 
 
 function displayLists(){
@@ -215,7 +195,7 @@ function displayNewListForm(){
         },
         body: JSON.stringify({
           'id': joke_id.dataset.jokeId,
-          'phrase': joke_id.innerText,
+          'joke': joke_id.innerText,
           'list_ids': checked_ids
         })
       })

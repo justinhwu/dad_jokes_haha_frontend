@@ -1,12 +1,12 @@
 class List {
 
-  // constructor(list){
-  //   this.id = list.id
-  //   this.name = list.name
-  //   this.userId = list.user_id
-  //   this.jokeId = list.joke_id
-  // }
-  //
+  constructor(list){
+    this.id = list.id
+    this.name = list.name
+    this.user_id = list.user_id
+    List.all.push(this)
+  }
+  static all = []
   // static getUserLists(){
   //   fetch(`http://localhost:3000.com/users/${user.id}`)
   //   .then(res => res.json())
