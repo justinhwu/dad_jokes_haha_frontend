@@ -4,6 +4,7 @@ let add_to_list_button = document.getElementById('add-joke-to-list')
 let user = undefined
 var modal = document.getElementById("myModal");
 let modal_content = document.getElementById('modal-content')
+let loginIcon = document.getElementById('ui-label')
 let login_form = document.getElementById('login-form-div')
 let add_to_list_div = document.getElementById('add-to-list-div')
 let checkbox_div = document.getElementById('checkbox-form-div')
@@ -26,14 +27,71 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 function initLoginModal(){
 
-  // Get the button that opens the modal
+  // Get the buttons that open the modal
   var btn = document.getElementById("myBtn");
 
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
 
+  // When the user clicks the login icon top-right, open the modal
+  loginIcon.onclick = function () {
+    if (user !== undefined){
+      //hides the login form
+
+      login_form.style.display = 'none'
+      modal.style.display = "block"
+      if (checkbox_div.childNodes.length <= 1 ){
+      //If the checkbox elements do not exist, then the program will display the checkbox once upon click
+        let create_new_list_button = document.createElement('button')
+        create_new_list_button.id = 'create_new_list_button'
+        create_new_list_button.className = 'ui teal button'
+        create_new_list_button.innerText = 'Create a New List'
+        let add_to_existing_list_button = document.createElement('button')
+        add_to_existing_list_button.id = 'add_to_existing_list_button'
+        add_to_existing_list_button.className = 'ui orange button'
+        add_to_existing_list_button.innerText = 'Add to an Existing List'
+
+        modal_content.append(create_new_list_button, add_to_existing_list_button)
+        add_to_existing_list_button.addEventListener('click', displayLists)
+        create_new_list_button.addEventListener('click', displayNewListForm)
+      }
+    }
+    else{
+      modal.style.display = "block";
+      let usernameVal = document.getElementById('username')
+      login_form.addEventListener('submit', (e)=>{
+        e.preventDefault()
+        fetch(loginRailsApi, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+          ,
+          body: JSON.stringify({
+            'username': usernameVal.value
+          })
+        })
+        .then(resp=> resp.json())
+        .then(userObj => {handleLogin(userObj)})
+      })
+    }
+  }
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+
   // When the user clicks the button, open the modal
-  btn.onclick = function() {
+  btn.onclick = function () {
     if (user !== undefined){
       //hides the login form
 
