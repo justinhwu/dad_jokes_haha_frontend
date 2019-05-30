@@ -44,7 +44,13 @@ class List {
           jokeListItem.className = 'item'
           jokeListItem.dataset.id = joke.id
           jokeListItem.innerHTML = `${joke.phrase}`
+          let deleteJokeButton = document.createElement('button')
+          deleteJokeButton.type = 'button'
+          deleteJokeButton.dataset.deleteJokeId = joke.id
+          deleteJokeButton.innerText = 'X'
+          jokeListItem.appendChild(deleteJokeButton)
           ulJokeDiv.appendChild(jokeListItem)
+
         })
         let btnDiv = document.createElement('div')
         btnDiv.className = 'ui bottom attached button'
