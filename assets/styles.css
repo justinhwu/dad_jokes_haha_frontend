@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.checkbox-list-select {
+  list-style: none;
+}
+
 .buttons {
   text-align: center;
 }
