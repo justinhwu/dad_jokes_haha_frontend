@@ -101,7 +101,7 @@ function initLoginModal(){
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
-    
+
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -113,7 +113,6 @@ function initLoginModal(){
 }
 
 function displayNewListForm(){
-<<<<<<< HEAD
   let hi = document.querySelector('.create_new_list_div')
   if(hi === null){
   let create_new_list_div = document.createElement('div')
@@ -132,22 +131,5 @@ function displayNewListForm(){
   create_new_list_div.appendChild(create_new_list_form)
   modal_content.prepend(create_new_list_div)
     }
-=======
-
-  if (checkbox_div.childNodes.length <= 1 ){
-    //rename add_to_list_form variable
-    let addListForm = document.createElement('form')
-
-
-    let name_label = document.createElement('label')
-    name_label.innerText = 'Name: '
-    let name_input = document.createElement('input')
-    name_input.type = 'text'
-    let submit = document.createElement('input')
-    submit.type = 'submit'
-    submit.value = 'Create New List'
-    addListForm.append(name_label, name_input, submit)
-    modal_content.prepend(addListForm)
->>>>>>> master
   }
 }
