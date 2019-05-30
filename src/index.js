@@ -118,8 +118,6 @@ function displayNewListForm(){
   let create_new_list_div = document.createElement('div')
   create_new_list_div.className = 'create_new_list_div'
   let create_new_list_form = document.createElement('form')
-
-
   let name_label = document.createElement('label')
   name_label.innerText = 'Name: '
   let name_input = document.createElement('input')
