@@ -12,7 +12,7 @@ class List {
 
   //add event listener to the Your Lists icon which triggers this function
   static render(){
-
+    if (User.all.length !== 0 ){
     randJokeParentDiv.style.display = 'none'
 
     //iterate through each list belonging to this user
@@ -29,9 +29,9 @@ class List {
           listCard.className ='card'
         let cardContentDiv = document.createElement('div')
           cardContentDiv.className = 'content'
-        let img = document.createElement('div')
+        let img = document.createElement('img')
           img.setAttribute('src', 'https://mickeygomez.com/wp-content/uploads/2012/06/dadrem.jpg?w=296')
-
+          img.className = 'right floated mini ui image'
         let headerDiv = document.createElement('div')
           headerDiv.className = 'header'
           headerDiv.innerHTML = `${list.name}`
@@ -39,13 +39,34 @@ class List {
         let ulJokeDiv = document.createElement('div')
         ulJokeDiv.className = 'ui bulleted list'
 
-        let listItems = list.jokes.forEach(joke => {
+        list.jokes.forEach(joke => {
           let jokeListItem = document.createElement('div')
           jokeListItem.className = 'item'
           jokeListItem.dataset.id = joke.id
           jokeListItem.innerHTML = `${joke.phrase}`
+          ulJokeDiv.appendChild(jokeListItem)
         })
+        let btnDiv = document.createElement('div')
+        btnDiv.className = 'ui bottom attached button'
+        btnDiv.innerHTML = "<i class='trash alternate outline icon'></i> Delete List"
+
+        //append div 'items' to div 'ui bulleted list', append bulleted list, img, div class header to content div
+
+        listCard.append(img, headerDiv, ulJokeDiv, btnDiv)
+
+
+        //append content div to cardDiv (class= card), append cardDiv to cardParent (look this up)
+        let uiCardsDiv = document.getElementById('ui-cards-div')
+        uiCardsDiv.append(listCard)
       })
+      }
+      else{
+        modal.style.display = "block";
+        login_form.addEventListener('submit', (e)=>{
+          e.preventDefault()
+          User.fetchUser()
+        })
+      }
     }
 
   static displayLists(){
@@ -112,16 +133,3 @@ class List {
       }
     }
   }
-    // let btnDiv = document.createElement('div')
-    // btnDiv.className = 'ui bottom attached button'
-    // btnDiv.innerHTML = `${<i class="trash alternate outline icon"></i> Delete List}`
-    //
-    // //append div 'items' to div 'ui bulleted list', append bulleted list, img, div class header to content div
-    // ulJokeDiv.append(listItems)
-    //
-    // listCard(img, headerDiv, ulJokeDiv)
-    //
-    //
-    // //append content div to cardDiv (class= card), append cardDiv to cardParent (look this up)
-    // let uiCardsDiv = document.getElementById('ui-cards-div')
-    // uiCardsDiv.append(listCard)
