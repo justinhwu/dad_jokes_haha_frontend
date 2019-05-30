@@ -27,10 +27,8 @@ class List {
       e.preventDefault()
       let checkbox = document.querySelectorAll('.check-box')
       let checked_ids = []
-
       checkbox.forEach((element)=>{
         if (element.checked){
-          debugger
           checked_ids.push(element.id)
         }
       })
@@ -44,7 +42,7 @@ class List {
         },
         body: JSON.stringify({
           'id': joke_id.dataset.jokeId,
-          'joke': joke_id.innerText,
+          'phrase': joke_id.innerText,
           'list_ids': checked_ids
         })
       })
@@ -60,6 +58,7 @@ class List {
       let list_box = document.createElement('input')
       list_box.id = list.id
       list_box.type = 'checkbox'
+      list_box.className = 'check-box'
       list_element.append(list_header, list_box)
       unordered_list.appendChild(list_element)
     })
