@@ -49,7 +49,12 @@ class List {
     }
 
   static displayLists(){
-    if (checkbox_div.childNodes.length <= 1 ){
+    let checkbox_div = document.querySelector('.checkbox-form-div')
+    if (checkbox_div === null){
+
+    let checkbox_form_div = document.createElement('div')
+    checkbox_form_div.className = 'checkbox-form-div'
+
     let joke = document.querySelector(`p`)
 
     //creates prompt for user to choose a list to add to
@@ -86,6 +91,7 @@ class List {
           'list_ids': checked_ids
           })
         })
+      })
 
     //Creates checkbox with each list item
     List.all.forEach((list)=> {
@@ -101,8 +107,8 @@ class List {
       unordered_list.appendChild(list_element)
     })
     add_to_list_form.append(unordered_list, submit)
-    checkbox_div.append(add_to_list_header, add_to_list_form)
-      })
+    checkbox_form_div.append(add_to_list_header, add_to_list_form)
+    modal_content.append(checkbox_form_div)
       }
     }
   }

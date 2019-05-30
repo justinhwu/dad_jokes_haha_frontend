@@ -9,7 +9,6 @@ let loginIcon = document.getElementById('ui-label')
 let showListsIcon = document.getElementById('ui-label-for-lists')
 let login_form = document.getElementById('login-form-div')
 let add_to_list_div = document.getElementById('add-to-list-div')
-let checkbox_div = document.getElementById('checkbox-form-div')
 
 document.addEventListener('DOMContentLoaded', ()=>{
     //sets the user for the page as undefined (if user isn't logged in)
@@ -53,6 +52,7 @@ function initLoginModal(){
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
+    
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -114,20 +114,19 @@ function initLoginModal(){
 
 function displayNewListForm(){
   let hi = document.querySelector('.create_new_list_div')
-  if(hi === null){
-  let create_new_list_div = document.createElement('div')
-  create_new_list_div.className = 'create_new_list_div'
-  let create_new_list_form = document.createElement('form')
-  let name_label = document.createElement('label')
-  name_label.innerText = 'Name: '
-  let name_input = document.createElement('input')
-  name_input.type = 'text'
-  let submit = document.createElement('input')
-  submit.type = 'submit'
-  submit.value = 'Create New List'
-  create_new_list_form.append(name_label, name_input, submit)
-  create_new_list_div.appendChild(create_new_list_form)
-  modal_content.prepend(create_new_list_div)
-    }
+    if(hi === null){
+      let create_new_list_div = document.createElement('div')
+      create_new_list_div.className = 'create_new_list_div'
+      let create_new_list_form = document.createElement('form')
+      let name_label = document.createElement('label')
+      name_label.innerText = 'Name: '
+      let name_input = document.createElement('input')
+      name_input.type = 'text'
+      let submit = document.createElement('input')
+      submit.type = 'submit'
+      submit.value = 'Create New List'
+      create_new_list_form.append(name_label, name_input, submit)
+      create_new_list_div.appendChild(create_new_list_form)
+      modal_content.prepend(create_new_list_div)
   }
 }
