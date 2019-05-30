@@ -4,6 +4,7 @@ class List {
     this.id = list.id
     this.name = list.name
     this.user_id = list.user_id
+    this.jokes = list.jokes
     List.all.push(this)
   }
   static all = []

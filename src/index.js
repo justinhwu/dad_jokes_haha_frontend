@@ -69,8 +69,11 @@ function initLoginModal(){
 
       login_form.style.display = 'none'
       modal.style.display = "block"
-      if (checkbox_div.childNodes.length <= 1 ){
+      let hi = document.querySelector('.add_joke_div')
+      if ( hi === null){
       //If the checkbox elements do not exist, then the program will display the checkbox once upon click
+        let add_joke_div = document.createElement('div')
+        add_joke_div.className = 'add_joke_div'
         let create_new_list_button = document.createElement('button')
         create_new_list_button.id = 'create_new_list_button'
         create_new_list_button.className = 'ui teal button'
@@ -80,7 +83,8 @@ function initLoginModal(){
         add_to_existing_list_button.className = 'ui orange button'
         add_to_existing_list_button.innerText = 'Add to an Existing List'
 
-        modal_content.append(create_new_list_button, add_to_existing_list_button)
+        add_joke_div.append(create_new_list_button, add_to_existing_list_button)
+        modal_content.append(add_joke_div)
         add_to_existing_list_button.addEventListener('click', List.displayLists)
         create_new_list_button.addEventListener('click', displayNewListForm)
       }
@@ -96,6 +100,7 @@ function initLoginModal(){
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
+    
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -107,17 +112,22 @@ function initLoginModal(){
 }
 
 function displayNewListForm(){
-  // if (checkbox_div.childNodes.length <= 1 ){
-  // // let add_to_list_form = document.createElement('form')
-  // //
-  // //
-  // // let name_label = document.createElement('label')
-  // // name_label.innerText = 'Name: '
-  // // let name_input = document.createElement('input')
-  // // name_input.type = 'text'
-  // // let submit = document.createElement('input')
-  // // submit.type = 'submit'
-  // // submit.value = 'Create New List'
-  // // add_to_list_form.append(name_label, name_input, submit)
-  // // modal_content.prepend(add_to_list_form)
+  let hi = document.querySelector('.create_new_list_div')
+  if(hi === null){
+  let create_new_list_div = document.createElement('div')
+  create_new_list_div.className = 'create_new_list_div'
+  let create_new_list_form = document.createElement('form')
+
+
+  let name_label = document.createElement('label')
+  name_label.innerText = 'Name: '
+  let name_input = document.createElement('input')
+  name_input.type = 'text'
+  let submit = document.createElement('input')
+  submit.type = 'submit'
+  submit.value = 'Create New List'
+  create_new_list_form.append(name_label, name_input, submit)
+  create_new_list_div.appendChild(create_new_list_form)
+  modal_content.prepend(create_new_list_div)
+    }
   }
