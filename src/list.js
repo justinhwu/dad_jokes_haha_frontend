@@ -1,12 +1,52 @@
 class List {
 
-  constructor(list){
-    this.id = list.id
-    this.name = list.name
-    this.user_id = list.user_id
+  constructor(listObj){
+    this.id = listObj.id
+    this.name = listObj.name
+    this.user_id = listObj.user_id
+    this.jokes = listObj.jokes
     List.all.push(this)
+
   }
   static all = []
+
+  //add event listener to the Your Lists icon which triggers this function
+  static render(){
+
+    randJokeParentDiv.style.display = 'none'
+
+    //iterate through each list belonging to this user
+
+    let thisUserLists = List.all
+    thisUserLists.forEach(list => {
+
+      let cardDiv = document.createElement('div')
+
+        //create card elements
+        //iterate thru user list names and each of their associated jokes
+
+        let listCard = document.createElement('div')
+          listCard.className ='card'
+        let cardContentDiv = document.createElement('div')
+          cardContentDiv.className = 'content'
+        let img = document.createElement('div')
+          img.setAttribute('src', 'https://mickeygomez.com/wp-content/uploads/2012/06/dadrem.jpg?w=296')
+
+        let headerDiv = document.createElement('div')
+          headerDiv.className = 'header'
+          headerDiv.innerHTML = `${list.name}`
+
+        let ulJokeDiv = document.createElement('div')
+        ulJokeDiv.className = 'ui bulleted list'
+
+        let listItems = list.jokes.forEach(joke => {
+          let jokeListItem = document.createElement('div')
+          jokeListItem.className = 'item'
+          jokeListItem.dataset.id = joke.id
+          jokeListItem.innerHTML = `${joke.phrase}`
+        })
+      })
+    }
 
   static displayLists(){
     if (checkbox_div.childNodes.length <= 1 ){
@@ -44,10 +84,8 @@ class List {
           'id': joke_id.dataset.jokeId,
           'phrase': joke_id.innerText,
           'list_ids': checked_ids
+          })
         })
-      })
-
-    })
 
     //Creates checkbox with each list item
     List.all.forEach((list)=> {
@@ -64,46 +102,20 @@ class List {
     })
     add_to_list_form.append(unordered_list, submit)
     checkbox_div.append(add_to_list_header, add_to_list_form)
+      })
+      }
     }
   }
-
-  // static getUserLists(){
-  //   fetch(`http://localhost:3000.com/users/${user.id}`)
-  //   .then(res => res.json())
-  //   .then(listsObj => {debugger})
-  // }
-  //
-  // renderLists(listsObj){
-  //
-  //   let arrayOfListObj = user.id
-  //
-  //   //create card elements
-  //   //iterate thru user list names and each of their associated jokes
-  //   let uiCardsDiv = document.getElementById('ui-cards-div')
-  //   let listCard = document.createElement('div')
-  //     listCard.className('card')
-  //
-  //
-  //
-  //     // <div class="card">
-  //     //   <div class="content">
-  //     //     <img class="right floated mini ui image" src="https://mickeygomez.com/wp-content/uploads/2012/06/dadrem.jpg?w=296">
-  //     //     <div class="header">
-  //     //       Name of List
-  //     //     </div>
-  //     //     //forEach list name, iterate through all joke_ids
-  //     //     //user.lists()
-  //     //     <div class="ui bulleted list">
-  //     //       <div class="item">Joke 1</div>
-  //     //       <div class="item">Joke 2</div>
-  //     //       <div class="item">Joke 3</div>
-  //     //     </div>
-  //     //   </div>
-  //     // </div>
-  //
-  //
-  //   //append div 'items' to div 'ui bulleted list' elements to
-  // }
-
-
-}
+    // let btnDiv = document.createElement('div')
+    // btnDiv.className = 'ui bottom attached button'
+    // btnDiv.innerHTML = `${<i class="trash alternate outline icon"></i> Delete List}`
+    //
+    // //append div 'items' to div 'ui bulleted list', append bulleted list, img, div class header to content div
+    // ulJokeDiv.append(listItems)
+    //
+    // listCard(img, headerDiv, ulJokeDiv)
+    //
+    //
+    // //append content div to cardDiv (class= card), append cardDiv to cardParent (look this up)
+    // let uiCardsDiv = document.getElementById('ui-cards-div')
+    // uiCardsDiv.append(listCard)

@@ -1,3 +1,4 @@
+let randJokeParentDiv = document.getElementById('random-joke-parent-div')
 let rand_div = document.getElementById('random-joke-div')
 let joke_button = document.getElementById('random-joke-button')
 let add_to_list_button = document.getElementById('add-joke-to-list')
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
     showListsIcon.onclick = function(){
-      List.getUserLists()
+      List.render()
     }
 })
 
@@ -107,17 +108,20 @@ function initLoginModal(){
 }
 
 function displayNewListForm(){
-  // if (checkbox_div.childNodes.length <= 1 ){
-  // // let add_to_list_form = document.createElement('form')
-  // //
-  // //
-  // // let name_label = document.createElement('label')
-  // // name_label.innerText = 'Name: '
-  // // let name_input = document.createElement('input')
-  // // name_input.type = 'text'
-  // // let submit = document.createElement('input')
-  // // submit.type = 'submit'
-  // // submit.value = 'Create New List'
-  // // add_to_list_form.append(name_label, name_input, submit)
-  // // modal_content.prepend(add_to_list_form)
+
+  if (checkbox_div.childNodes.length <= 1 ){
+    //rename add_to_list_form variable
+    let addListForm = document.createElement('form')
+
+
+    let name_label = document.createElement('label')
+    name_label.innerText = 'Name: '
+    let name_input = document.createElement('input')
+    name_input.type = 'text'
+    let submit = document.createElement('input')
+    submit.type = 'submit'
+    submit.value = 'Create New List'
+    addListForm.append(name_label, name_input, submit)
+    modal_content.prepend(addListForm)
   }
+}
