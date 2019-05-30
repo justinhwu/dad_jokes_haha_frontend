@@ -45,100 +45,77 @@ class List {
           jokeListItem.dataset.id = joke.id
           jokeListItem.innerHTML = `${joke.phrase}`
         })
-
-        let btnDiv = document.createElement('div')
-        btnDiv.className = 'ui bottom attached button'
-        btnDiv.innerHTML = `${<i class="trash alternate outline icon"></i> Delete List}`
-
-        //append div 'items' to div 'ui bulleted list', append bulleted list, img, div class header to content div
-        ulJokeDiv.append(listItems)
-
-        listCard(img, headerDiv, ulJokeDiv)
-
-
-        //append content div to cardDiv (class= card), append cardDiv to cardParent (look this up)
-        let uiCardsDiv = document.getElementById('ui-cards-div')
-        uiCardsDiv.append(listCard)
       })
-
     }
 
+  static displayLists(){
+    if (checkbox_div.childNodes.length <= 1 ){
+    let joke = document.querySelector(`p`)
 
+    //creates prompt for user to choose a list to add to
+    let add_to_list_header = document.createElement('h2')
+    add_to_list_header.innerText = 'Please choose a list to add this joke to!'
+    //creates form to submit
+    let add_to_list_form = document.createElement('form')
+    let unordered_list = document.createElement('ul')
+    let submit = document.createElement('input')
+    submit.type = 'submit'
+    submit.value = 'Add to List'
+    add_to_list_form.id = 'add_to_list_form'
 
+    add_to_list_form.addEventListener('submit', (e)=>{
+      e.preventDefault()
+      let checkbox = document.querySelectorAll('.check-box')
+      let checked_ids = []
+      checkbox.forEach((element)=>{
+        if (element.checked){
+          checked_ids.push(element.id)
+        }
+      })
 
+      let joke_id = document.querySelector('p')
+      fetch(`http://localhost:3000/jokes`, {
+        method:'post',
+        headers:{
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          'id': joke_id.dataset.jokeId,
+          'phrase': joke_id.innerText,
+          'list_ids': checked_ids
+          })
+        })
 
-
-
-
-
-
-
-  //   showNewJokeForm(){
-  //
-  //   if (checkbox_div.childNodes.length <= 1 ){
-  //   let joke = document.querySelector(`p`)
-  //
-  //   //creates prompt for user to choose a list to add to
-  //   let addListForm_header = document.createElement('h2')
-  //   addListForm_header.innerText = 'Please choose a list to add this joke to!'
-  //   //creates form to submit
-  //   let addListForm = document.createElement('form')
-  //   let unordered_list = document.createElement('ul')
-  //   let submit = document.createElement('input')
-  //   submit.type = 'submit'
-  //   submit.value = 'Add to List'
-  //   addListForm_form.id = 'addListForm_form'
-  //
-  //   addListForm_form.addEventListener('submit', (e)=>{
-  //     e.preventDefault()
-  //     let checkbox = document.querySelectorAll('.check-box')
-  //     let checked_ids = []
-  //
-  //     checkbox.forEach((element)=>{
-  //       if (element.checked){
-  //         debugger
-  //         checked_ids.push(element.id)
-  //       }
-  //     })
-  //
-  //     let joke_id = document.querySelector('p')
-  //     fetch(`http://localhost:3000/jokes`, {
-  //       method:'post',
-  //       headers:{
-  //         'Content-Type': 'application/json',
-  //         Accept: 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //         'id': joke_id.dataset.jokeId,
-  //         'joke': joke_id.innerText,
-  //         'list_ids': checked_ids
-  //       })
-  //     })
-  //
-  //   })
-  //
-  //   //Creates checkbox with each list item
-  //   List.all.forEach((list)=> {
-  //     let list_element = document.createElement('li')
-  //     list_element.className = 'checkbox-list-select'
-  //     let list_header = document.createElement('header')
-  //     list_header.innerText = list.name
-  //     let list_box = document.createElement('input')
-  //     list_box.id = list.id
-  //     list_box.type = 'checkbox'
-  //     list_element.append(list_header, list_box)
-  //     unordered_list.appendChild(list_element)
-  //   })
-  //   addListForm_form.append(unordered_list, submit)
-  //   checkbox_div.append(addListForm_header, addListForm_form)
-  //   }
-  // }
-
-
-
-
-  // new(){
-  //   // List.new accesses the inputs of Justin's displayNewListForm() in index.js
-  //
-  //   // addListForm is the var, so access the inputs and post
-  // }
+    //Creates checkbox with each list item
+    List.all.forEach((list)=> {
+      let list_element = document.createElement('li')
+      list_element.className = 'checkbox-list-select'
+      let list_header = document.createElement('header')
+      list_header.innerText = list.name
+      let list_box = document.createElement('input')
+      list_box.id = list.id
+      list_box.type = 'checkbox'
+      list_box.className = 'check-box'
+      list_element.append(list_header, list_box)
+      unordered_list.appendChild(list_element)
+    })
+    add_to_list_form.append(unordered_list, submit)
+    checkbox_div.append(add_to_list_header, add_to_list_form)
+      })
+      }
+    }
+  }
+    // let btnDiv = document.createElement('div')
+    // btnDiv.className = 'ui bottom attached button'
+    // btnDiv.innerHTML = `${<i class="trash alternate outline icon"></i> Delete List}`
+    //
+    // //append div 'items' to div 'ui bulleted list', append bulleted list, img, div class header to content div
+    // ulJokeDiv.append(listItems)
+    //
+    // listCard(img, headerDiv, ulJokeDiv)
+    //
+    //
+    // //append content div to cardDiv (class= card), append cardDiv to cardParent (look this up)
+    // let uiCardsDiv = document.getElementById('ui-cards-div')
+    // uiCardsDiv.append(listCard)

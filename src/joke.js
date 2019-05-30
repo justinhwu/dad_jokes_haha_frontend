@@ -2,7 +2,7 @@ class Joke{
 
   constructor(jokeObj){
     this.id = jokeObj.id
-    this.joke = jokeObj.joke
+    this.phrase = jokeObj.joke
     Joke.all.push(this)
   }
 
@@ -31,7 +31,7 @@ class Joke{
     let paragraph = document.createElement('p')
     let randomJokeDiv = document.getElementById('random-joke-div')
     paragraph.dataset.jokeId = this.id
-    paragraph.innerText = this.joke
+    paragraph.innerText = this.phrase
     randomJokeDiv.appendChild(paragraph)
   }
 
