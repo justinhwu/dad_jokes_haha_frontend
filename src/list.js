@@ -55,7 +55,16 @@ class List {
         let btnDiv = document.createElement('div')
         btnDiv.className = 'ui bottom attached button'
         btnDiv.innerHTML = "<i class='trash alternate outline icon'></i> Delete List"
-
+        btnDiv.dataset.id = list.id
+        btnDiv.onclick = event => {
+          fetch(`http://localhost:3000/lists/${list.id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': `application/json`
+            }
+          })
+          event.target.parentElement.remove()
+        }
         //append div 'items' to div 'ui bulleted list', append bulleted list, img, div class header to content div
 
         listCard.append(img, headerDiv, ulJokeDiv, btnDiv)
