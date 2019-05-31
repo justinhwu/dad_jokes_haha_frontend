@@ -27,6 +27,7 @@
 
 .buttons {
   text-align: center;
+  margin: auto;
 }
 /* Modal CSS */
 .modal {

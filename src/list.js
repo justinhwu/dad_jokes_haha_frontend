@@ -37,21 +37,23 @@ class List {
           img.setAttribute('src', 'https://mickeygomez.com/wp-content/uploads/2012/06/dadrem.jpg?w=296')
           img.className = 'right floated mini ui image'
         let headerDiv = document.createElement('div')
-          headerDiv.className = 'header'
+          headerDiv.className = 'content'
           headerDiv.innerHTML = `${list.name}`
 
         let ulJokeDiv = document.createElement('div')
-        ulJokeDiv.className = 'ui bulleted list'
+        ulJokeDiv.className = 'ui celled list'
 
         list.jokes.forEach(joke => {
           let jokeListItem = document.createElement('div')
           jokeListItem.className = 'item'
           jokeListItem.dataset.id = joke.id
           jokeListItem.innerHTML = `${joke.phrase}`
+          let line_break = document.createElement('br')
           let deleteJokeButton = document.createElement('button')
+          deleteJokeButton.className = 'mini ui red button'
           deleteJokeButton.type = 'button'
           deleteJokeButton.dataset.deleteJokeId = joke.id
-          deleteJokeButton.innerText = 'X'
+          deleteJokeButton.innerText = 'Delete Joke'
           deleteJokeButton.onclick = (event) => {
             event.preventDefault()
             let list_joke = event.currentTarget
@@ -68,7 +70,7 @@ class List {
             })
             list_joke.parentElement.remove()
           }
-          jokeListItem.appendChild(deleteJokeButton)
+          jokeListItem.append(line_break, deleteJokeButton)
           ulJokeDiv.appendChild(jokeListItem)
 
         })
