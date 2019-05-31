@@ -12,7 +12,9 @@ class List {
 
   //add event listener to the Your Lists icon which triggers this function
   static render(){
+    let find_card = document.querySelector('.card')
     if (User.all.length !== 0 ){
+    if(find_card === null){
     listCardsDiv.style.display = 'table'
     randJokeParentDiv.style.display = 'none'
 
@@ -92,6 +94,13 @@ class List {
         let uiCardsDiv = document.getElementById('ui-cards-div')
         uiCardsDiv.append(listCard)
       })
+      }
+        else{
+          if (listCardsDiv.style.display === 'none'){
+            listCardsDiv.style.display = 'table'
+            randJokeParentDiv.style.display = 'none'
+          }
+        }
       }
       else{
         modal.style.display = "block";

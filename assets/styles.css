@@ -1,5 +1,20 @@
 .header {
   text-align: center;
+  display:block;
+  margin: auto;
+}
+
+.header-img{
+   display: block;
+   height: 300px;
+   margin-top: 100px;
+   margin-left: auto;
+   margin-right: auto;
+
+}
+
+.header-div{
+
 }
 
 .random-joke {

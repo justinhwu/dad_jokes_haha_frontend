@@ -6,20 +6,27 @@
     <title>Dad Jokes to Make You Laugh</title>
   </head>
   <body>
-    <a class="ui label" id="ui-label-home">
-      <i class="home icon"></i>
+  <div class="ui pointing menu">
+    <a class="active item" id="ui-label-home">
+      <!-- <i class="home icon"></i> -->
       Home
     </a>
-    <a class="ui label" id="ui-label">
-      <i class="user circle outline icon"></i>
+    <h1 class='header'> Dad Jokes Har Har Har</h1>
+    <a class="item" id="ui-label">
+      <!-- <i class="user circle outline icon"></i> -->
       Login
     </a>
-    <a class="ui label" id="ui-label-for-lists">
-      <i class="copy outline icon"></i>
+    <a class="item" id="ui-label-for-lists">
+      <!-- <i class="copy outline icon"></i> -->
       Your Lists
     </a>
+  </div>
 
-    <h1 class='header'> Dad Jokes Har Har Har</h1>
+  <div class='ui segment'>
+  <!-- <div class='header-div'>
+    <img class='header-img' src='https://i.kym-cdn.com/entries/icons/original/000/015/878/thatsnoneofmy.jpg'>
+  </div> -->
+
     <div class="ui raised very padded text container segment" id="random-joke-parent-div">
       <div class="random-joke" id='random-joke-div'></div>
       <div class='buttons' id='buttons'>
@@ -59,12 +66,8 @@
                 </form>
             </div>
           </div>
-              <!-- <div class='checkbox-form' id='checkbox-form-div'>
-              </div> -->
             </div>
           </div>
-        <!-- </div>
-      </div> -->
 
 
     <div class="login" id="login-div"></div>
@@ -72,7 +75,7 @@
     </div>
 </div>
     <div class="ui cards" id='ui-cards-div'></div>
-
+</div>
     <script src="src/adapter.js"></script>
     <script src="src/helper.js"></script>
     <script src="src/joke.js"></script>
