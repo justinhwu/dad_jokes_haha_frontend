@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
     showListsIcon.onclick = function(){
+      loginIcon.className= 'item'
+      homeIcon.className = 'item'
+      showListsIcon.className = 'active item'
       List.render()
     }
 })
@@ -44,6 +47,9 @@ function initLoginModal(){
   loginIcon.onclick = function () {
     if(User.all.length === 0){
       modal.style.display = "block";
+      loginIcon.className= 'active item'
+      homeIcon.className = 'item'
+      showListsIcon.className = 'item'
       let usernameVal = document.getElementById('username')
       login_form.addEventListener('submit', (e)=>{
         e.preventDefault()
@@ -54,7 +60,9 @@ function initLoginModal(){
 
   // when user clicks home icon, close list div and show random joke div
   homeIcon.onclick = function(){
-
+    loginIcon.className= 'item'
+    homeIcon.className = 'active item'
+    showListsIcon.className = 'item'
     listCardsDiv.style.display = 'none';
     randJokeParentDiv.style.display = 'block';
   }
