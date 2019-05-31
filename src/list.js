@@ -13,6 +13,7 @@ class List {
   //add event listener to the Your Lists icon which triggers this function
   static render(){
     if (User.all.length !== 0 ){
+    listCardsDiv.style.display = 'table'
     randJokeParentDiv.style.display = 'none'
 
     //iterate through each list belonging to this user
@@ -27,6 +28,7 @@ class List {
 
         let listCard = document.createElement('div')
           listCard.className ='card'
+          listCard.style.display = 'inline-table'
         let cardContentDiv = document.createElement('div')
           cardContentDiv.className = 'content'
         let img = document.createElement('img')
