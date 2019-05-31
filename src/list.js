@@ -126,18 +126,17 @@ class List {
     //creates form to submit
     let add_to_list_form = document.createElement('form')
     let unordered_list = document.createElement('ul')
-    let submit = document.createElement('input')
-    submit.type = 'submit'
-    submit.value = 'Add to List'
     add_to_list_form.id = 'add_to_list_form'
 
     add_to_list_form.addEventListener('submit', (e)=>{
       e.preventDefault()
+      modal.style.display = 'none'
       let checkbox = document.querySelectorAll('.check-box')
       let checked_ids = []
       checkbox.forEach((element)=>{
         if (element.checked){
           checked_ids.push(element.id)
+          element.checked = false
         }
       })
 
@@ -160,17 +159,21 @@ class List {
     List.all.forEach((list)=> {
       let list_element = document.createElement('li')
       list_element.className = 'checkbox-list-select'
-      let list_header = document.createElement('header')
-      list_header.innerText = list.name
+      let list_label = document.createElement('label')
+      list_label.innerText = list.name
+      debugger
       let list_box = document.createElement('input')
       list_box.id = list.id
       list_box.type = 'checkbox'
       list_box.className = 'check-box'
-      list_element.append(list_header, list_box)
+      list_element.append(list_label, list_box)
       unordered_list.appendChild(list_element)
     })
+    let submit = document.createElement('input')
+    submit.type = 'submit'
+    submit.value = 'Add to List'
     add_to_list_form.append(unordered_list, submit)
-    checkbox_form_div.append(add_to_list_header, add_to_list_form)
+    checkbox_form_div.append(add_to_list_label, add_to_list_form)
     modal_content.append(checkbox_form_div)
       }
     }
@@ -197,6 +200,7 @@ class List {
 
       add_to_list_form.addEventListener('submit', (e)=>{
         e.preventDefault()
+        modal.style.display = 'none'
         let checkbox = document.querySelectorAll('.check-box')
         let checked_ids = []
         checkbox.forEach((element)=>{
@@ -257,6 +261,7 @@ class List {
           create_new_list_form.id = 'create_new_list_form'
           create_new_list_form.addEventListener('submit', (e)=>{
             e.preventDefault()
+            modal.style.display = 'none'
             let find_list_name = document.getElementById('list-name')
             fetch('http://localhost:3000/lists', {
               method: 'post',
@@ -273,6 +278,7 @@ class List {
               .then(listObj => {
                 let new_list_instance = new List(listObj)
               })
+              create_new_list_form.reset()
           })
           let name_label = document.createElement('label')
           name_label.innerText = 'Name: '
