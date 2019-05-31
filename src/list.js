@@ -33,12 +33,9 @@ class List {
           listCard.style.display = 'inline-table'
         let cardContentDiv = document.createElement('div')
           cardContentDiv.className = 'content'
-        let img = document.createElement('img')
-          img.setAttribute('src', 'https://mickeygomez.com/wp-content/uploads/2012/06/dadrem.jpg?w=296')
-          img.className = 'right floated mini ui image'
         let headerDiv = document.createElement('div')
           headerDiv.className = 'header'
-          headerDiv.innerHTML = `${list.name}`
+          headerDiv.innerHTML = list.name
 
         let ulJokeDiv = document.createElement('div')
         ulJokeDiv.className = 'ui bulleted list'
@@ -87,7 +84,7 @@ class List {
         }
         //append div 'items' to div 'ui bulleted list', append bulleted list, img, div class header to content div
 
-        listCard.append(img, headerDiv, ulJokeDiv, btnDiv)
+        listCard.append(headerDiv, ulJokeDiv, btnDiv)
 
 
         //append content div to cardDiv (class= card), append cardDiv to cardParent (look this up)

@@ -1,4 +1,4 @@
-.header {
+.header-title {
   text-align: center;
   display:block;
   margin: auto;
@@ -13,6 +13,10 @@
 
 }
 
+.header {
+  font-weight: bold;
+  text-align: center;
+}
 .header-div{
 
 }
