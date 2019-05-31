@@ -48,6 +48,22 @@ class List {
           deleteJokeButton.type = 'button'
           deleteJokeButton.dataset.deleteJokeId = joke.id
           deleteJokeButton.innerText = 'X'
+          deleteJokeButton.onclick = (event) => {
+            event.preventDefault()
+            let list_joke = event.currentTarget
+            fetch(`http://localhost:3000/joke_lists/delete`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+              },
+              body: JSON.stringify({
+                'list_id': list.id,
+                'joke_id': joke.id
+              })
+            })
+            list_joke.parentElement.remove()
+          }
           jokeListItem.appendChild(deleteJokeButton)
           ulJokeDiv.appendChild(jokeListItem)
 
