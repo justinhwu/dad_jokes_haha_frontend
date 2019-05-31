@@ -87,7 +87,7 @@ function initLoginModal(){
         add_joke_div.append(create_new_list_button, add_to_existing_list_button)
         modal_content.append(add_joke_div)
         add_to_existing_list_button.addEventListener('click', List.displayLists)
-        create_new_list_button.addEventListener('click', displayNewListForm)
+        create_new_list_button.addEventListener('click', List.displayNewListForm)
       }
     }
     else{
@@ -109,24 +109,5 @@ function initLoginModal(){
     if (event.target == modal) {
       modal.style.display = "none";
     }
-  }
-}
-
-function displayNewListForm(){
-  let hi = document.querySelector('.create_new_list_div')
-    if(hi === null){
-      let create_new_list_div = document.createElement('div')
-      create_new_list_div.className = 'create_new_list_div'
-      let create_new_list_form = document.createElement('form')
-      let name_label = document.createElement('label')
-      name_label.innerText = 'Name: '
-      let name_input = document.createElement('input')
-      name_input.type = 'text'
-      let submit = document.createElement('input')
-      submit.type = 'submit'
-      submit.value = 'Create New List'
-      create_new_list_form.append(name_label, name_input, submit)
-      create_new_list_div.appendChild(create_new_list_form)
-      modal_content.prepend(create_new_list_div)
   }
 }

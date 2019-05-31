@@ -147,4 +147,128 @@ class List {
     modal_content.append(checkbox_form_div)
       }
     }
+
+    static displayLists(){
+      let checkbox_div = document.querySelector('.checkbox-form-div')
+      if (checkbox_div === null){
+      let checkbox_form_div = document.createElement('div')
+      checkbox_form_div.className = 'checkbox-form-div'
+      checkbox_form_div.style.display = 'block'
+
+      let joke = document.querySelector(`p`)
+
+      //creates prompt for user to choose a list to add to
+      let add_to_list_header = document.createElement('h2')
+      add_to_list_header.innerText = 'Please choose a list to add this joke to!'
+      //creates form to submit
+      let add_to_list_form = document.createElement('form')
+      let unordered_list = document.createElement('ul')
+      let submit = document.createElement('input')
+      submit.type = 'submit'
+      submit.value = 'Add to List'
+      add_to_list_form.id = 'add_to_list_form'
+
+      add_to_list_form.addEventListener('submit', (e)=>{
+        e.preventDefault()
+        let checkbox = document.querySelectorAll('.check-box')
+        let checked_ids = []
+        checkbox.forEach((element)=>{
+          if (element.checked){
+            checked_ids.push(element.id)
+          }
+        })
+
+        let joke_id = document.querySelector('p')
+        fetch(`http://localhost:3000/jokes`, {
+          method:'post',
+          headers:{
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            'id': joke_id.dataset.jokeId,
+            'phrase': joke_id.innerText,
+            'list_ids': checked_ids
+            })
+          })
+        })
+
+      //Creates checkbox with each list item
+      List.all.forEach((list)=> {
+        let list_element = document.createElement('li')
+        list_element.className = 'checkbox-list-select'
+        let list_header = document.createElement('header')
+        list_header.innerText = list.name
+        let list_box = document.createElement('input')
+        list_box.id = list.id
+        list_box.type = 'checkbox'
+        list_box.className = 'check-box'
+        list_element.append(list_header, list_box)
+        unordered_list.appendChild(list_element)
+      })
+      add_to_list_form.append(unordered_list, submit)
+      checkbox_form_div.append(add_to_list_header, add_to_list_form)
+      modal_content.append(checkbox_form_div)
+        }
+      else{
+        if (checkbox_div.style.display === 'block'){
+          checkbox_div.style.display = 'none'
+        }
+        else if(checkbox_div.style.display === 'none'){
+          checkbox_div.style.display = 'block'
+        }
+      }
+      }
+
+    static displayNewListForm(){
+      let hi = document.querySelector('.create_new_list_div')
+        if(hi === null){
+          let create_new_list_div = document.createElement('div')
+          create_new_list_div.className = 'create_new_list_div'
+          create_new_list_div.style.display = 'block'
+          let create_new_list_form = document.createElement('form')
+          create_new_list_form.id = 'create_new_list_form'
+          create_new_list_form.addEventListener('submit', (e)=>{
+            e.preventDefault()
+            let find_list_name = document.getElementById('list-name')
+            fetch('http://localhost:3000/lists', {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+              },
+              body: JSON.stringify({
+                'name': find_list_name.value,
+                'user_id': User.all[0].id
+              })
+            })
+              .then(resp => resp.json())
+              .then(listObj => {
+                let new_list_instance = new List(listObj)
+              })
+          })
+          let name_label = document.createElement('label')
+          name_label.innerText = 'Name: '
+          let name_input = document.createElement('input')
+          name_input.type = 'text'
+          name_input.id = 'list-name'
+          let submit = document.createElement('input')
+          submit.type = 'submit'
+          submit.value = 'Create New List'
+          create_new_list_form.append(name_label, name_input, submit)
+          create_new_list_div.appendChild(create_new_list_form)
+          modal_content.appendChild(create_new_list_div)
+        }
+        else{
+          if (hi.style.display === 'block'){
+            hi.style.display = 'none'
+          }
+          else if(hi.style.display === 'none'){
+            hi.style.display = 'block'
+          }
+
+        }
+
+      }
+
   }
