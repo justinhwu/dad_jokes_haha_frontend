@@ -47,3 +47,7 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+body{
+  background-color: (72, 117, 96) !important;
+}

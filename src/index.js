@@ -7,8 +7,10 @@ var modal = document.getElementById("myModal");
 let modal_content = document.getElementById('modal-content')
 let loginIcon = document.getElementById('ui-label')
 let showListsIcon = document.getElementById('ui-label-for-lists')
+let homeIcon = document.getElementById('ui-label-home')
 let login_form = document.getElementById('login-form-div')
 let add_to_list_div = document.getElementById('add-to-list-div')
+let listCardsDiv = document.getElementById('ui-cards-div')
 
 document.addEventListener('DOMContentLoaded', ()=>{
     //sets the user for the page as undefined (if user isn't logged in)
@@ -49,6 +51,15 @@ function initLoginModal(){
       })
       }
     }
+
+  // when user clicks home icon, close list div and show random joke div
+  homeIcon.onclick = function(){
+
+    listCardsDiv.style.display = 'none';
+    randJokeParentDiv.style.display = 'block';
+  }
+
+
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";

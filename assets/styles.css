@@ -63,3 +63,13 @@
   top: 0px;
   right: 90px;
 }
+
+#ui-label-home {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+body{
+  background-color: (72, 117, 96) !important;
+}
